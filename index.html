@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"> 
+    </head>
+    <body>
+        <script>
+            function computerPlay(){
+                let rRoll=Math.trunc((Math.random()*3+1));
+                switch (rRoll){
+                    case 1:
+                        return "Rock";
+                    case 2:
+                        return "Paper";
+                    case 3:
+                        return "Scissors";
+                    default:
+                        return "uhoh...";
+                }
+            }
+            const playerSelection='rock';
+            const computerSelection=computerPlay();
+            function playRound(playerSelection='rock',computerSelection='rock'){
+                playerSelection=playerSelection.toLowerCase();
+                computerSelection=computerSelection.toLowerCase();
+                switch(true){
+                    //Win States:
+                    case(playerSelection=='rock'&&computerSelection=='scissors'):
+                        return 'win';
+                    case(playerSelection=='scissors'&&computerSelection=='paper'):
+                        return 'win';
+                    case(playerSelection=='paper'&&computerSelection=='rock'):
+                        return 'win';
+                    //Loss States:
+                    case(computerSelection=='rock'&&playerSelection=='scissors'):
+                        return 'Loss';
+                    case(computerSelection=='scissors'&&playerSelection=='paper'):
+                        return 'Loss';
+                    case(computerSelection=='paper'&&playerSelection=='rock'):
+                        return 'Loss';
+                    default:
+                        return 'Tie';
+                }
+            }
+        </script>
+    </body>
+</html>
