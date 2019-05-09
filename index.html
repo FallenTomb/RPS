@@ -18,8 +18,8 @@
                         return "uhoh...";
                 }
             }
-            const playerSelection='rock';
-            const computerSelection=computerPlay();
+            /* const playerSelection='rock';
+            const computerSelection=computerPlay(); */
             function playRound(playerSelection='rock',computerSelection='rock'){
                 playerSelection=playerSelection.toLowerCase();
                 computerSelection=computerSelection.toLowerCase(); 
@@ -43,15 +43,27 @@
                 }
             }
             function playerPlay(){
+                let selection;
                 for(valid=false;valid==false;){
                     selection=prompt("Enter Your Selection");
-                    if(selection.toLowerCase=='rock')
+                    if(selection.toLowerCase()=='rock'){
+                        valid=true;
+                    }
+                    else if(selection.toLowerCase()=='paper'){
+                        valid=true;
+                    }
+                    else if(selection.toLowerCase()=='scissors'){
+                        valid=true;
+                    }
+                    else{
+                        console.log("Invalid Entry!");
+                    }
                 }
-                return selection;
+                return selection.toLowerCase();
             }
             function game(){
                 for(x=1;x<=5;x++){
-                    console.log(playRound(prompt('rock paper or scissors?'),computerPlay()));
+                    console.log(playRound(playerPlay(),computerPlay()));
                 }           
             }
         </script>
