@@ -22,25 +22,37 @@
             const computerSelection=computerPlay();
             function playRound(playerSelection='rock',computerSelection='rock'){
                 playerSelection=playerSelection.toLowerCase();
-                computerSelection=computerSelection.toLowerCase();
+                computerSelection=computerSelection.toLowerCase(); 
                 switch(true){
                     //Win States:
                     case(playerSelection=='rock'&&computerSelection=='scissors'):
-                        return 'win';
+                        return 'win, rock smashes scissors!';
                     case(playerSelection=='scissors'&&computerSelection=='paper'):
-                        return 'win';
+                        return 'win, scissors cuts paper!';
                     case(playerSelection=='paper'&&computerSelection=='rock'):
-                        return 'win';
+                        return 'win, paper covers rock!';
                     //Loss States:
                     case(computerSelection=='rock'&&playerSelection=='scissors'):
-                        return 'Loss';
+                        return 'Loss, rock smashes scissors!';
                     case(computerSelection=='scissors'&&playerSelection=='paper'):
-                        return 'Loss';
+                        return 'Loss, scissors cuts paper!';
                     case(computerSelection=='paper'&&playerSelection=='rock'):
-                        return 'Loss';
+                        return 'Loss, paper covers rock';
                     default:
-                        return 'Tie';
+                        return (playerSelection==computerSelection)?`Tie, both chose ${playerSelection}!`:"ERROR";
                 }
+            }
+            function playerPlay(){
+                for(valid=false;valid==false;){
+                    selection=prompt("Enter Your Selection");
+                    if(selection.toLowerCase=='rock')
+                }
+                return selection;
+            }
+            function game(){
+                for(x=1;x<=5;x++){
+                    console.log(playRound(prompt('rock paper or scissors?'),computerPlay()));
+                }           
             }
         </script>
     </body>
