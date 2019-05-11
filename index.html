@@ -39,7 +39,8 @@
                     case(computerSelection=='paper'&&playerSelection=='rock'):
                         return 'lpr';
                     default:
-                        return (playerSelection==computerSelection)?`Tie, both chose ${playerSelection}!`:"ERROR";
+                        console.log((playerSelection==computerSelection)?`Tie, both chose ${playerSelection}!`:"ERROR");
+                        return 'tie'
                 }
             }
             function playerPlay(){
@@ -62,8 +63,24 @@
                 return selection.toLowerCase();
             }
             function game(){
+                let result;
                 for(x=1;x<=5;x++){
-                    console.log(playRound(playerPlay(),computerPlay()));
+                    result=playRound(playerPlay(),computerPlay());
+                    switch(true){
+                        case result == 'wrs':
+                            break;
+                        case result == 'wrs':
+                            break;
+                        case result == 'wrs':
+                            break;
+                        case result == 'wrs':
+                            break;
+                        case result == 'wrs':
+                            break;
+                        case result == 'wrs':
+                            break;
+                        default:
+                    }
                 }           
             }
         </script>
