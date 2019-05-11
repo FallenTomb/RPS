@@ -39,8 +39,7 @@
                     case(computerSelection=='paper'&&playerSelection=='rock'):
                         return 'lpr';
                     default:
-                        console.log((playerSelection==computerSelection)?`Tie, both chose ${playerSelection}!`:"ERROR");
-                        return 'tie'
+                        return (playerSelection==computerSelection)?`Tie, both chose ${playerSelection}!`:"ERROR";
                 }
             }
             function playerPlay(){
