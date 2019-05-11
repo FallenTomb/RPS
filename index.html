@@ -26,18 +26,18 @@
                 switch(true){
                     //Win States:
                     case(playerSelection=='rock'&&computerSelection=='scissors'):
-                        return 'win, rock smashes scissors!';
+                        return 'wrs';
                     case(playerSelection=='scissors'&&computerSelection=='paper'):
-                        return 'win, scissors cuts paper!';
+                        return 'wsp';
                     case(playerSelection=='paper'&&computerSelection=='rock'):
-                        return 'win, paper covers rock!';
+                        return 'wpr';
                     //Loss States:
                     case(computerSelection=='rock'&&playerSelection=='scissors'):
-                        return 'Loss, rock smashes scissors!';
+                        return 'lrs';
                     case(computerSelection=='scissors'&&playerSelection=='paper'):
-                        return 'Loss, scissors cuts paper!';
+                        return 'lsp';
                     case(computerSelection=='paper'&&playerSelection=='rock'):
-                        return 'Loss, paper covers rock';
+                        return 'lpr';
                     default:
                         return (playerSelection==computerSelection)?`Tie, both chose ${playerSelection}!`:"ERROR";
                 }
