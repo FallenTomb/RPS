@@ -62,24 +62,47 @@
                 return selection.toLowerCase();
             }
             function game(){
+                let pScore=0,cScore=0;
                 let result;
-                for(x=1;x<=5;x++){
+                for(x=1;x<5;x++){
                     result=playRound(playerPlay(),computerPlay());
                     switch(true){
                         case result == 'wrs':
+                            console.log('win, rock smashes scissors!');
+                            pScore++;
                             break;
-                        case result == 'wrs':
+                        case result == 'wsp':
+                            console.log('win, scissors cut paper!');
+                            pScore++;
                             break;
-                        case result == 'wrs':
+                        case result == 'wpr':
+                            console.log('win, paper covers rock!');
+                            pScore++;
                             break;
-                        case result == 'wrs':
+                        case result == 'lrs':
+                            console.log('loss, rock smashes scissors!');
+                            cScore++;
                             break;
-                        case result == 'wrs':
+                        case result == 'lsp':
+                            console.log('loss, scissors cut paper!');
+                            cScore++;
                             break;
-                        case result == 'wrs':
+                        case result == 'lpr':
+                            console.log('loss, paper covers rock!');
+                            cScore++;
                             break;
                         default:
+                            console.log(result);
+                            break;
                     }
+                //console.log(pScore,cScore);
+                }
+                if(pScore>cScore){
+                    return 'win';
+                }else if(pScore<cScore){
+                    return 'loss';
+                }else{
+                    return 'tie';
                 }           
             }
         </script>
