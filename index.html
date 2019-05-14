@@ -1,110 +1,78 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8"> 
-    </head>
-    <body>
+        <meta charset="UTF-8">
         <script>
-            function computerPlay(){
-                let rRoll=Math.trunc((Math.random()*3+1));
-                switch (rRoll){
+            //a function to return an integer between 1 and the target value, will be used to roll rps
+            function random(max){
+                return Math.floor(Math.random()*max+1);
+            }
+            //player function to get input and see if its valid, throws -1 if it is not
+            function pPlay(choice=prompt('choose rock paper or scissors').toLowerCase()){
+                if((choice=='rock')||(choice=='paper')||(choice=='scissors')){
+                    return choice;
+                }
+                else{
+                    return -1;
+                }
+            }
+            //function randomly chooses an option for the computer
+            function comPlay(){
+                let roll=random(3);
+                switch (roll){
                     case 1:
-                        return "Rock";
+                        return 'rock';
                     case 2:
-                        return "Paper";
+                        return 'paper';
                     case 3:
-                        return "Scissors";
-                    default:
-                        return "uhoh...";
+                        return 'scissors';
                 }
             }
-            /* const playerSelection='rock';
-            const computerSelection=computerPlay(); */
-            function playRound(playerSelection='rock',computerSelection='rock'){
-                playerSelection=playerSelection.toLowerCase();
-                computerSelection=computerSelection.toLowerCase(); 
-                switch(true){
-                    //Win States:
-                    case(playerSelection=='rock'&&computerSelection=='scissors'):
-                        return 'wrs';
-                    case(playerSelection=='scissors'&&computerSelection=='paper'):
-                        return 'wsp';
-                    case(playerSelection=='paper'&&computerSelection=='rock'):
-                        return 'wpr';
-                    //Loss States:
-                    case(computerSelection=='rock'&&playerSelection=='scissors'):
-                        return 'lrs';
-                    case(computerSelection=='scissors'&&playerSelection=='paper'):
-                        return 'lsp';
-                    case(computerSelection=='paper'&&playerSelection=='rock'):
-                        return 'lpr';
-                    default:
-                        return (playerSelection==computerSelection)?`Tie, both chose ${playerSelection}!`:"ERROR";
-                }
-            }
-            function playerPlay(){
-                let selection;
-                for(valid=false;valid==false;){
-                    selection=prompt("Enter Your Selection");
-                    if(selection.toLowerCase()=='rock'){
-                        valid=true;
-                    }
-                    else if(selection.toLowerCase()=='paper'){
-                        valid=true;
-                    }
-                    else if(selection.toLowerCase()=='scissors'){
-                        valid=true;
-                    }
-                    else{
-                        console.log("Invalid Entry!");
-                    }
-                }
-                return selection.toLowerCase();
-            }
-            function game(){
-                let pScore=0,cScore=0;
-                let result;
-                for(x=1;x<5;x++){
-                    result=playRound(playerPlay(),computerPlay());
-                    switch(true){
-                        case result == 'wrs':
-                            console.log('win, rock smashes scissors!');
-                            pScore++;
-                            break;
-                        case result == 'wsp':
-                            console.log('win, scissors cut paper!');
-                            pScore++;
-                            break;
-                        case result == 'wpr':
-                            console.log('win, paper covers rock!');
-                            pScore++;
-                            break;
-                        case result == 'lrs':
-                            console.log('loss, rock smashes scissors!');
-                            cScore++;
-                            break;
-                        case result == 'lsp':
-                            console.log('loss, scissors cut paper!');
-                            cScore++;
-                            break;
-                        case result == 'lpr':
-                            console.log('loss, paper covers rock!');
-                            cScore++;
-                            break;
-                        default:
-                            console.log(result);
-                            break;
-                    }
-                //console.log(pScore,cScore);
-                }
-                if(pScore>cScore){
+            //function plays a round
+            function round(pChoice=comPlay(),cChoice=comPlay()){
+                if((pChoice=='rock'&&cChoice=='scissors')||(pChoice=='paper'&&cChoice=='rock')||(pChoice=='scissors'&&cChoice=='paper')){
                     return 'win';
-                }else if(pScore<cScore){
-                    return 'loss';
-                }else{
+                }else if(pChoice==cChoice){
                     return 'tie';
-                }           
+                }else{
+                    return 'loss';
+                }
+            }
+            //function plays a game using above methods
+            function game(rounds=5){
+                let pScore=0,cScore=0,pChoice,cChoice,outcome;
+                while(rounds>0){
+                    pChoice=pPlay();
+                    cChoice=comPlay();
+                    if(pChoice!=-1){
+                        outcome=round(pChoice,cChoice); 
+                        if(outcome=='win'){
+                            console.log(`you win! ${pChoice} beats ${cChoice}!`);
+                            pScore++;
+                            rounds--;
+                        }else if(outcome=='loss'){
+                            console.log(`you lose! ${cChoice} beats ${pChoice}!`);
+                            cScore++;
+                            rounds--;
+                        }else{
+                            console.log(`Tie! both players chose ${pChoice}, nobody wins!`);
+                            rounds--;
+                        }
+                       
+                    }
+                }
+                //check which score is highest and declare winner;
+                if(pScore>cScore){
+                    console.log('congratulations, you won!');
+                }else if(pScore<cScore){
+                    console.log('sorry, you lost!');
+                }else{
+                    console.log('tie game!');
+                }
+                return 0;
             }
         </script>
+    </head>
+    <body> 
     </body>
 </html>
